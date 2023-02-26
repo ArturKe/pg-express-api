@@ -23,7 +23,7 @@ services:
     ports:
       -"80:9000"
     volume:
-      -.:/usr/app		
+      -.:/usr/app
     depends_on:
       -bd
     command: npm run start

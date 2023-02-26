@@ -5,7 +5,7 @@ services:
     image: postgres:alpine
     environment:
       - POSTGRES_USER=postgres
-      - POSTGRESS_PASSWORD=postgres
+      - POSTGRES_PASSWORD=postgres
     ports:
       - "5432:5432"
     volumes:
@@ -17,6 +17,9 @@ services:
       - PGADMIN_DEFAULT_EMAIL=admin@mail.com
       - PGADMIN_DEFAULT_PASSWORD=admin
       - PGADMIN_LISTEN_PORT=5050
+    ports:
+      - "5050:5050"
+      
   api:
     build: ./server
     ports:

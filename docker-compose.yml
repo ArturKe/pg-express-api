@@ -1,0 +1,34 @@
+version: '1'
+services:
+	db:
+		image: postgress:alpine
+		environment:
+      -POSTGRES_USER=postgres
+      -POSTGRESS_PASSWORD=postgres
+      -POSTGRESS_DB=${DEFAULT_DB}
+		ports:
+			-"5432:5432
+		volume:
+			-data: /var/lib/postgressql/data
+	pg-admin:
+		image: dpage/pgadmin4:6
+		envirenment:
+			-PGADMIN_DEFAULT_EMAIL=admin@mail.com
+			-PGADMIN_DEFAULT_PASSWORD=admin
+			-PGADMIN_LISTEN_PORT=5050
+
+	api:
+		build: ./server
+			constext: .
+			dockerfile: Dockerfile
+			target: base
+		ports:
+			-"80:9000"
+		volume:
+			-.:/usr/app		
+    depends_on:
+		  -bd
+    command: npm run start
+		
+volumes:
+	data:

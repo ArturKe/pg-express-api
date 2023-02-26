@@ -10,14 +10,14 @@ services:
     ports:
       -"5432:5432
     volume:
-			-data: /var/lib/postgressql/data
+      -data: /var/lib/postgressql/data
 
   pg-admin:
     image: dpage/pgadmin4:6
     envirenment:
-			-PGADMIN_DEFAULT_EMAIL=admin@mail.com
-			-PGADMIN_DEFAULT_PASSWORD=admin
-			-PGADMIN_LISTEN_PORT=5050
+      -PGADMIN_DEFAULT_EMAIL=admin@mail.com
+      -PGADMIN_DEFAULT_PASSWORD=admin
+      -PGADMIN_LISTEN_PORT=5050
   api:
     build: ./server
     ports:

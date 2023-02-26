@@ -8,12 +8,12 @@ services:
       - POSTGRESS_PASSWORD=postgres
     ports:
       - "5432:5432"
-    volume:
+    volumes:
       - data:/var/lib/postgressql/data
 
   pg-admin:
     image: dpage/pgadmin4:6
-    envirenment:
+    environment:
       - PGADMIN_DEFAULT_EMAIL=admin@mail.com
       - PGADMIN_DEFAULT_PASSWORD=admin
       - PGADMIN_LISTEN_PORT=5050
@@ -21,7 +21,7 @@ services:
     build: ./server
     ports:
       - "80:9000"
-    volume:
+    volumes:
       - .:/usr/app
     depends_on:
       - bd

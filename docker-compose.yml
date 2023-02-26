@@ -24,7 +24,7 @@ services:
     volumes:
       - .:/usr/app
     depends_on:
-      - bd
+      - db
     command: npm run start
 volumes:
   data:

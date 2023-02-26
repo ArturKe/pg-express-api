@@ -1,5 +1,6 @@
-import Router from "express";
+import Router from "express"
 // const userController = require('../controllers/user.controller')
+import userController from "../controller/user.controller.js"
 // const authMiddleware = require('../middlewares/authMiddleware')
 const router = new Router
 // const {check} = require('express-validator')
@@ -13,16 +14,16 @@ const router = new Router
 // router.post('/user', authMiddleware, userController.createUser)
 // router.post('/user', userController.createUser)
 
-// router.get('/user', userController.getUsers)
-// router.get('/user/:id', userController.getOneUser)
+router.get('/user', userController.getUsers)
+router.get('/user/:id', userController.getOneUser)
 
 // router.put('/user', userController.updateUser)
 // router.delete('/user/:id', userController.deleteUser)
 
-router.get('/user/:id', (req, res) => {
-  const userId = req.params.id || 0
-	res.send({userId})
-})
+// router.get('/user/:id', (req, res) => {
+//   const userId = req.params.id || 0
+// 	res.send({userId})
+// })
 
 router.get('/json/:id', (req, res) => {
   const userId = req.params.id || 0

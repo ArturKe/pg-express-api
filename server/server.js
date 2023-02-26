@@ -1,14 +1,13 @@
 import express from "express";
-import https from "https"
+import router from './routes/user.routes.js'
+// import https from "https"
 // import fs from "fs"
-
 
 const app = express()
 // const useRouter = require('./routes/user.routes')
-import router from './routes/user.routes.js'
 
 const PORT = process.env.PORT || 3000
-// console.log(https)
+console.log('This is URL: ' + process.env.URL)
 
 // import os from "os"
 // console.log("Home directory:" + os.homedir())

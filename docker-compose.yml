@@ -24,6 +24,8 @@ services:
     build: ./server
     ports:
       - "80:9000"
+    environment:
+      - URL=google.com
     volumes:
       - .:/usr/app
     depends_on:

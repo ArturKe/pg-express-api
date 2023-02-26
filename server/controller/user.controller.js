@@ -1,4 +1,5 @@
 // const db = require('../db')
+import { db } from "../db.js"
 // const bcrypt = require('bcrypt')
 // require('dotenv').config()
 // const {validationResult} = require('express-validator')
@@ -76,17 +77,34 @@ class UserController {
 
 
   async getUsers (req, res) {
+    console.log('get Users')
     try {
-      const userInfo = await db.query(`SELECT * from users`)
-      // res.send(userInfo.rows)
-      res.json(userInfo.rows)
+      const userInfo = await db.query(`SELECT id, name, surname, email from users`)
+      res.send(userInfo.rows)
+      // res.json(userInfo.rows)
     } catch (error) {
       res.status(400).send('Page not found!')
     }
   }
 
   async getOneUser (req,res) {
-    res.send('ONE USERS HERE!' + req)
+    const userId = req.params.id || 0
+    // res.send({userId, message: 'ONE USERS HERE!'})
+    try {
+      const userInfo = await db.query(`SELECT * from users where id=${userId}`)
+     
+      console.log('Row Count: ' + userInfo.rowCount)
+      console.log('Rows: ' + userInfo.rows)
+      if (userInfo.rowCount) {
+        res.json(userInfo.rows)
+        // res.send(userInfo.rows)
+      } else {
+        res.json({message: 'No records was found'})
+      }
+      
+    } catch (error) {
+      res.status(400).send('Page not found!')
+    }
   }
 
   async updateUser (req,res) {
@@ -113,4 +131,5 @@ class UserController {
   }
 }
 
-module.exports = new UserController
+// module.exports = new UserController
+export default new UserController

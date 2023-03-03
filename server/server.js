@@ -15,7 +15,7 @@ console.log('This is URL: ' + process.env.URL)
 // app.use(express.static('dist'));
 
 app.get("/help", (req, res) => {
-	res.send("Here is some HELP")
+	res.send("Here is some HELP: " + process.env.URL_REMOTE)
 })
 
 app.use(express.json())

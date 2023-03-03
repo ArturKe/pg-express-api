@@ -9,7 +9,7 @@ services:
     ports:
       - "5432:5432"
     volumes:
-      - data:/var/lib/postgressql/data
+      - data-db:/var/lib/postgressql/data
 
   pg-admin:
     image: dpage/pgadmin4:6
@@ -25,11 +25,13 @@ services:
     ports:
       - "80:9000"
     environment:
-      - URL=google.com
+      - URL_REMOTE=google.com
+    restart: unless-stopped
     volumes:
       - .:/usr/app
     depends_on:
       - db
     command: npm run start
 volumes:
-  data:
+  data-db:
+    external: true

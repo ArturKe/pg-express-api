@@ -10,6 +10,7 @@ services:
       - "5432:5432"
     volumes:
       - data-db:/var/lib/postgresql/data
+    restart: unless-stopped
 
   pg-admin:
     image: dpage/pgadmin4:6
@@ -19,6 +20,7 @@ services:
       - PGADMIN_LISTEN_PORT=5050
     ports:
       - "5050:5050"
+    restart: unless-stopped
       
   api:
     build: ./server
